@@ -10,6 +10,7 @@
 namespace WeloInvoiceEmail;
 
 use Shopware\Components\Plugin;
+use Shopware\Components\Plugin\Context\UninstallContext;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -32,5 +33,16 @@ class WeloInvoiceEmail extends Plugin
         $container->setParameter('welo_invoice_email.plugin_dir', $this->getPath());
         $container->setParameter('welo_invoice_email.namespace', $this->getName());
         parent::build($container);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function uninstall(UninstallContext $context): void
+    {
+        // Clear only cache when switching from active state to uninstall
+        if ($context->getPlugin()->getActive()) {
+            $context->scheduleClearCache(UninstallContext::CACHE_LIST_ALL);
+        }
     }
 }
