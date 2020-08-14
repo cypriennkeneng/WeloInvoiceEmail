@@ -23,7 +23,6 @@
             <argument>%welo_invoice_email.plugin_dir%</argument>
             <argument type="service" id="template"/>
             <tag name="shopware.event_subscriber"/>
-            <argument type="service" id="shopware.cache_manager"/>
         </service>
 
         <service class="WeloInvoiceEmail\Subscriber\Document" id="welo_invoice_email.subscriber.document">

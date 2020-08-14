@@ -12,8 +12,6 @@ namespace WeloInvoiceEmail\Subscriber;
 use Enlight\Event\SubscriberInterface;
 use Enlight_Template_Manager;
 use Enlight_Event_EventArgs as EventArgs;
-use Shopware\Components\CacheManager;
-use Shopware_Controllers_Backend_Config;
 
 /**
  * Class Template
@@ -39,27 +37,20 @@ class Template implements SubscriberInterface
      * @var string
      */
     private $pluginName;
-    /**
-     * @var CacheManager
-     */
-    private $cacheManager;
 
     /**
      * @param string                   $pluginName
      * @param                          $pluginDir
      * @param Enlight_Template_Manager $templateManager
-     * @param CacheManager             $cacheManager
      */
     public function __construct(
         $pluginName,
         $pluginDir,
-        Enlight_Template_Manager $templateManager,
-        CacheManager $cacheManager
+        Enlight_Template_Manager $templateManager
     ) {
         $this->templateManager = $templateManager;
         $this->pluginDir = $pluginDir;
         $this->pluginName = $pluginName;
-        $this->cacheManager = $cacheManager;
     }
 
     /**
@@ -73,7 +64,6 @@ class Template implements SubscriberInterface
                 'onTemplateDirectoriesCollect',
                 1000
             ],
-            'Enlight_Controller_Action_PostDispatchSecure_Backend_Config' => 'onPostDispatchConfig'
         ];
     }
 
@@ -90,17 +80,5 @@ class Template implements SubscriberInterface
         $dirs = $args->getReturn();
         $dirs[] = $this->pluginDir . '/Resources/views';
         $args->setReturn($dirs);
-    }
-
-    public function onPostDispatchConfig(\Enlight_Event_EventArgs $args)
-    {
-        /** @var Shopware_Controllers_Backend_Config $subject */
-        $subject = $args->get('subject');
-        $request = $subject->Request();
-
-        // If this is a POST-Request, and affects our plugin, we may clear the config cache
-        if($request->isPost() && $request->getParam('name') === $this->pluginDir) {
-            $this->cacheManager->clearByTag(CacheManager::CACHE_TAG_CONFIG);
-        }
     }
 }
