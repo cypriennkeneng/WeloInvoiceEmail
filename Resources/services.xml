@@ -19,7 +19,6 @@
         </service>
 
         <service class="WeloInvoiceEmail\Subscriber\Template" id="welo_invoice_email.subscriber.template">
-            <argument>%welo_invoice_email.namespace%</argument>
             <argument>%welo_invoice_email.plugin_dir%</argument>
             <argument type="service" id="template"/>
             <tag name="shopware.event_subscriber"/>

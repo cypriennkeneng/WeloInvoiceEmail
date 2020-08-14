@@ -34,23 +34,15 @@ class Template implements SubscriberInterface
     private $pluginDir;
 
     /**
-     * @var string
-     */
-    private $pluginName;
-
-    /**
-     * @param string                   $pluginName
      * @param                          $pluginDir
      * @param Enlight_Template_Manager $templateManager
      */
     public function __construct(
-        $pluginName,
         $pluginDir,
         Enlight_Template_Manager $templateManager
     ) {
         $this->templateManager = $templateManager;
         $this->pluginDir = $pluginDir;
-        $this->pluginName = $pluginName;
     }
 
     /**
