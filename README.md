@@ -27,5 +27,5 @@
 
     For improvement suggestions or
     individual adjustments that can not be reproduced with the plugin
-    Feel free to contact us via email at <a href="mailto:shopware@webloupe.de"> shopware@webloupe.de </a>!    
+    Feel free to contact us via email at <a href="mailto:shopware@webloupe.de"> shopware@webloupe.de </a>    
 
