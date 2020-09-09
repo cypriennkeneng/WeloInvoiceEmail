@@ -72,14 +72,22 @@ class Document implements SubscriberInterface
         /* @var Smarty_Data $view */
         $view = $document->_view;
 
-        if (1 != $documentTypeId || !(bool)$this->configuration->getPluginConfig('DisplayEmail')) {
-            return;
-        }
-
         $order = $view->getTemplateVars('Order');
         $userId = $order['_order']['userID'];
 
         if (0 == (int)$userId) {
+            return;
+        }
+
+        if (1 == $documentTypeId) {
+            $displayEmail = (bool)$this->configuration->getPluginConfig('DisplayEmail');
+        } elseif (2 == $documentTypeId) {
+            $displayEmail = (bool)$this->configuration->getPluginConfig('DisplayEmailDeliveryNote');
+        } else {
+            return;
+        }
+
+        if (!$displayEmail) {
             return;
         }
 
@@ -89,7 +97,7 @@ class Document implements SubscriberInterface
         $weloOrderData = [
             'wDocumentType' => $documentTypeId,
             'isWeloPhoneNumberEnabled' => $this->isWeloPhoneNumberEnabled(),
-            'DisplayEmail' => $this->configuration->getPluginConfig('DisplayEmail'),
+            'DisplayEmail' => $displayEmail,
             'DisplayLabel' => $this->configuration->getPluginConfig('DisplayLabel'),
             'email' => $user ? $user->getEmail() : '',
         ];

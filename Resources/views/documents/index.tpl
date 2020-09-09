@@ -1,7 +1,7 @@
 {extends file="parent:documents/index.tpl"}
 
 {block name="document_index_head_right"}
-    {if $weloOrderData.DisplayEmail && $weloOrderData.wDocumentType == 1 && $weloOrderData.email}
+    {if $weloOrderData.DisplayEmail && $weloOrderData.email}
         {$Containers.Header_Box_Right.value}
         {s name="DocumentIndexCustomerID"}{/s} {$User.billing.customernumber|string_format:"%06d"}<br />
         {if $User.billing.ustid}

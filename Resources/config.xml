@@ -6,8 +6,8 @@
     <elements>
         <element required="true" type="boolean" scope="shop">
             <name>DisplayEmail</name>
-            <label lang="de">E-Mail anzeigen</label>
-            <label lang="en">Display Email</label>
+            <label lang="de">E-Mail auf Rechnungen anzeigen</label>
+            <label lang="en">Display Email on the invoices</label>
             <value>1</value>
         </element>
 
@@ -15,6 +15,13 @@
             <name>DisplayLabel</name>
             <label lang="de">Label anzeigen</label>
             <label lang="en">Display the label</label>
+            <value>1</value>
+        </element>
+
+        <element required="true" type="boolean" scope="shop">
+            <name>DisplayEmailDeliveryNote</name>
+            <label lang="de">E-Mail auf den Lieferscheinen anzeigen</label>
+            <label lang="en">Display Email on the delivery notes</label>
             <value>1</value>
         </element>
     </elements>
