@@ -8,8 +8,8 @@
   -->
 
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
-    <label>E-Mail address on the invoices</label>
-    <label lang="de">E-Mail-Adresse auf Rechnungen</label>
+    <label>E-Mail address on the invoices and delivery notes</label>
+    <label lang="de">E-Mail-Adresse auf Rechnungen und Lieferscheinen</label>
     <version>1.0.1</version>
     <copyright>(c) by Web Loupe</copyright>
     <license>proprietary</license>
